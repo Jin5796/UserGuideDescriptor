@@ -73,4 +73,4 @@ Click Start to compute and export the 2D, 3D descriptors and molecular fingerpri
 
 ##################################RDKit#############################################
 The RDKit molecular descriptors were calculated by running the rdkit.py script in Spyder. After modifying the code as required, the script was executed to produce three output .csv files containing the descriptor data.
-
+The content of **RKDit_173.csv** should be replaced with the actual compounds to be calculated as needed; the file is provided as a template only.

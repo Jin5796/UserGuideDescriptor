@@ -8,8 +8,8 @@ graphics.off()
 library(stringr)
 library(plyr)
 
-# List txt files from directory, extract chemical name  注：Chemical 为了对应做了一些调整
-data=dir(path="F:/2ndALL/0 Gaussian16计算文件_替换2分子/Super/", pattern="\\_Superdelocalizability_2nd.txt")
+# List txt files from directory, extract chemical name  
+data=dir(path="F:/2ndALL/0 Gaussian16/Super/", pattern="\\_Superdelocalizability_2nd.txt")
 
 # Remove extension, leading p
 data=gsub("_Superdelocalizability_2nd.txt","",data)
@@ -45,14 +45,14 @@ df$TDE = NA
 df$TDN0 = NA
 df$TDE0 = NA
 
-#最大最小值 同时对应多个原子
+
 df$Repeat = NA
   
 # Loop through all txt files in directory
 for (i in 1:length(Chemical)){
   
   #     Scan in each txt file
-  fptxt <- paste("F:/2ndALL/0 Gaussian16计算文件_替换2分子/Super/p", Chemical[i], "_Superdelocalizability_2nd.txt", sep="")
+  fptxt <- paste("F:/2ndALL/0 Gaussian16/Super/p", Chemical[i], "_Superdelocalizability_2nd.txt", sep="")
 
   txtfile <- scan(file=fptxt, what=character(), sep="\n")
   
@@ -75,7 +75,7 @@ for (i in 1:length(Chemical)){
 
   # Condensed local Nucleophilic/Electrophilic superdelocalizability value and relavant-atom
   local_start = Con1 + 3
-  # 注：按照格式定位出错Con2-2 对应的不是原子最后一行
+  
   local_end = Con2 - 1
   DNnum = NULL
   DEnum = NULL
@@ -105,7 +105,7 @@ for (i in 1:length(Chemical)){
   DE0maxAtom1 = which(DE0num==max(DE0num[local_start:local_end]),arr.ind=TRUE)
   DE0minAtom1 = which(DE0num==min(DE0num[local_start:local_end]),arr.ind=TRUE)
   
-  #输出重复的组别 用"-"分开
+  
   if(length(DNmaxAtom1)>1|length(DNminAtom1)>1|length(DEmaxAtom1)>1|length(DEminAtom1)>1|
      length(DN0maxAtom1)>1|length(DN0minAtom1)>1|length(DE0maxAtom1)>1|length(DE0minAtom1)>1){
   df$Repeat [rindx] = paste(DNmaxAtom1[1:length(DNmaxAtom1)],DNminAtom1[1:length(DNminAtom1)],DEmaxAtom1[1:length(DEmaxAtom1)],DEminAtom1[1:length(DEminAtom1)],
@@ -124,4 +124,4 @@ for (i in 1:length(Chemical)){
   df$DE0minatom[rindx] = gsub(x=str_sub(string=txtfile[DE0minAtom1], start=1, end=10), pattern=" ", replacement="")
   
 }
-write.csv(df, file="F:/2ndALL/0 Gaussian16计算文件_替换2分子/txt_superdelocalizability_2nd_173.csv", row.names=F)
+write.csv(df, file="F:/2ndALL/0 Gaussian16/txt_superdelocalizability_2nd_173.csv", row.names=F)

@@ -5,7 +5,7 @@ graphics.off()
 library(stringr)
 library(plyr)
 home=getwd() #
-data=dir(path='F:/2ndALL/0 Gaussian16计算文件_替换2分子/3ndOPT_log_out/',pattern="\\.log")
+data=dir(path='F:/2ndALL/0 Gaussian16/3ndOPT_log_out/',pattern="\\.log")
 data=gsub(".log","",data)
 CHEMICAL=gsub("p","",data)
 
@@ -20,7 +20,7 @@ df$Entropy=NA
 df$Polarizability=NA
 
 for (i in 1:length(CHEMICAL)){
-  fp <- paste('F:/2ndALL/0 Gaussian16计算文件_替换2分子/3ndOPT_log_out/p', CHEMICAL[i], ".log", sep="")  
+  fp <- paste('F:/2ndALL/0 Gaussian16/3ndOPT_log_out/p', CHEMICAL[i], ".log", sep="")  
   logfile <- scan(file=fp, what=character(), sep="\n")
   rindx=grep(paste("^",CHEMICAL[i],"$",sep=""),df$CHEMICAL)
   
@@ -110,4 +110,4 @@ for (i in 1:length(CHEMICAL)){
   if (length(polarizability)>0) df$Polarizability[rindx]=as.numeric(polarizability)
   
   }
-write.csv(df, file="F:/2ndALL/0 Gaussian16计算文件_替换2分子/Log_3ndOPT_Freq.csv", row.names=F)
+write.csv(df, file="F:/2ndALL/0 Gaussian16/Log_3ndOPT_Freq.csv", row.names=F)

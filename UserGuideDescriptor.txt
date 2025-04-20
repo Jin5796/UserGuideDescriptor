@@ -1,5 +1,8 @@
 ######UserGuideDescriptor#####
-After completing the structural optimization of the compounds using Gaussian, convert the output files into .fchk format, which will serve as the input for subsequent analysis. Depending on the selected calculation methods, use the corresponding computational chemistry software (e.g., Multiwfn, Gaussian, PaDEL, etc.) to extract molecular descriptors. Please refer to the specific operation guides below for detailed instructions on each software. When running the associated scripts or codes, ensure that the file paths and command parameters are correctly modified according to the actual locations of the .fchk files and the software installations to ensure proper execution.
+After completing the structural optimization of the compounds using Gaussian, convert the output files into .fchk format, which will serve as the input for subsequent analysis. 
+Depending on the selected calculation methods, use the corresponding computational chemistry software (e.g., Multiwfn, Gaussian, PaDEL, etc.) to extract molecular descriptors. 
+Please refer to the specific operation guides below for detailed instructions on each software. 
+When running the associated scripts or codes, ensure that the file paths and command parameters are correctly modified according to the actual locations of the .fchk files and the software installations to ensure proper execution.
 ##################################Multiwfn#############################################
 1. Preparation
 Download and install Multiwfn version 3.7 from the official website (http://sobereva.com).

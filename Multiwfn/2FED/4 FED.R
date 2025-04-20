@@ -55,7 +55,7 @@ for (i in 1:length(chemical)){
   df$TotalFEDLUMO[rindx] = as.numeric(gsub(x=str_sub(string=txtfile[max(Contributions)], start=-25, end=-2), pattern=" ", replacement=""))
   df$TotalFEDHOMO[rindx] = as.numeric(gsub(x=str_sub(string=txtfile[min(Contributions)], start=-25, end=-2), pattern=" ", replacement=""))
 
-  # 做for循环前，一定要先定义变量
+  
   FEDLUMOnum = NULL
   LUMO_start = max(Contributions)+2
   LUMO_end = max(DI)-1

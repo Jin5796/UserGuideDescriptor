@@ -10,7 +10,7 @@ library(stringr)
 library(plyr)
 
 # List txt files from directory, extract chemical name
-data=dir(path="F:/2ndALL/0 Gaussian16计算文件/HF_N_fchk/WOFukui/", pattern="\\_Weighted_Condensed_FuiKui.txt")
+data=dir(path="F:/2ndALL/0 Gaussian16/HF_N_fchk/WOFukui/", pattern="\\_Weighted_Condensed_FuiKui.txt")
 
 # Remove extension, leading p
 data=gsub("_Weighted_Condensed_FuiKui.txt","",data)
@@ -37,7 +37,7 @@ df$TotalFwHOMO = NA
 for (i in 1:length(chemical)){
   
   #     Scan in each txt file
-  fptxt <- paste("F:/2ndALL/0 Gaussian16计算文件/HF_N_fchk/WOFukui/p", chemical[i], "_Weighted_Condensed_FuiKui.txt", sep="")  
+  fptxt <- paste("F:/2ndALL/0 Gaussian16/HF_N_fchk/WOFukui/p", chemical[i], "_Weighted_Condensed_FuiKui.txt", sep="")  
   
   txtfile <- scan(file=fptxt, what=character(), sep="\n")
   
@@ -63,7 +63,7 @@ for (i in 1:length(chemical)){
   FK4 = FK3+1
   FK2 = FK3-1
 
-  # 做for循环前，一定要先定义变量
+  
   FLUMOnum = NULL
   FHOMOnum = NULL
   FRadicalnum = NULL
@@ -99,4 +99,4 @@ for (i in 1:length(chemical)){
   df$TotalFwHOMO[rindx] = THOnum 
   
 }
-write.csv(df, file="F:/2ndALL/0 Gaussian16计算文件_替换2分子/txt_Weighted_Condensed_FuiKui_173.csv", row.names=F)
+write.csv(df, file="F:/2ndALL/0 Gaussian16/txt_Weighted_Condensed_FuiKui_173.csv", row.names=F)

@@ -1,4 +1,4 @@
-########################### 整合描述符
+########################### 
 from rdkit import Chem
 from rdkit.Chem import rdMolDescriptors,AllChem
 from rdkit.Chem.EState import Fingerprinter
@@ -7,7 +7,7 @@ from rdkit.Chem.rdmolops import PatternFingerprint
 from rdkit.Chem import rdReducedGraphs
 from rdkit.Chem.rdMHFPFingerprint import MHFPEncoder
 
-# 创建对象
+
 from rdkit.Chem import Descriptors
 from rdkit.ML.Descriptors import MoleculeDescriptors
 des_list = [x[0] for x in Descriptors._descList]
@@ -48,26 +48,22 @@ fw1 = open('D:/test/0220517_3ndOPT_173_RDKit_1.csv','w')
 fw2 = open('D:/test/20220517_3ndOPT_173_RDKit_Pharm.csv','w')
 fw3 = open('D:/test/20220517_3ndOPT_173_RDKit_func.csv','w')
 
-### 生成官能团描述符的前期准备
-# from rdkit import Chem #【前面有定义】
+
+
 from rdkit.Chem import RDConfig
 from rdkit.Chem import FragmentCatalog
-## 先将多个分子的片段汇总到一个片段存储器中
-# 传入参数器，创建一个片段存储器，产生的分子片段都会存储在该对象中
-fName = os.path.join(RDConfig.RDDataDir, 'FunctionalGroups.txt')#txt里有39个官能团
+
+fName = os.path.join(RDConfig.RDDataDir, 'FunctionalGroups.txt')
 fparams = FragmentCatalog.FragCatParams(1, 6, fName)
 fcat = FragmentCatalog.FragCatalog(fparams)
-# 创建一个片段生成器：通过该对象生成片段
+
 fcgen = FragmentCatalog.FragCatGenerator()
 smi='CC#N'
 mol = Chem.MolFromSmiles(smi)
 print(mol)#<rdkit.Chem.rdchem.Mol object at 0x000001F3E6F23BC0>
 if mol:
     fcgen.AddFragsFromMol(mol, fcat)
-# 查看分子片段数量
-# fcat.GetNumEntries() # 6554
-## 存储器收集完所有片段后，再用它来生成分子指纹
-# 创建一个片段指纹生成器
+
 fpgen = FragmentCatalog.FragFPGenerator()
 
 def processString(txt):
@@ -75,7 +71,7 @@ def processString(txt):
     for specialChar in specialChars:
         txt = txt.replace(specialChar,'')
     #print(txt)
-    #txt = txt.replace(' ', '')#运行的出来，但是查看结果会让python崩溃
+    #txt = txt.replace(' ', '')
     return txt
     
 newline_1 = "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n"%(
@@ -102,8 +98,6 @@ newline3 = processString(newline_3)
 fw1.write(newline1)
 fw2.write(newline2)
 fw3.write(newline3)
-
-# for循环读取SMILES，计算分子描述符，将结果写入csv文件
 
 mol = Chem.MolFromMolFile(smi)
     #print(mol)
@@ -141,9 +135,9 @@ if mol:
         ErGFP = rdReducedGraphs.GetErGFingerprint(mol) # Array of float64
         ErGFP_vector = list(ErGFP)
         
-        # 创建MHFP编译器
+        
         a = MHFPEncoder()
-        # MHFP长度是2048，但是数值不是01二分
+        
         MHFP = MHFPEncoder.EncodeMol(a,mol)
         MHFP_vector = [int(i) for i in MHFP]
         # SECFP binary vector
@@ -211,4 +205,4 @@ fw1.close()
 fw2.close()
 fw3.close()
 
-#包含的特征个数：61622
+#Descriptor number：61622
